@@ -5,21 +5,21 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : libkmahjongg
-Version  : 18.08.0
-Release  : 1
-URL      : https://download.kde.org/stable/applications/18.08.0/src/libkmahjongg-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/libkmahjongg-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/libkmahjongg-18.08.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 18.12.2
+Release  : 2
+URL      : https://download.kde.org/stable/applications/18.12.2/src/libkmahjongg-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/libkmahjongg-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/libkmahjongg-18.12.2.tar.xz.sig
+Summary  : Common code, backgrounds and tile sets for games using Mahjongg tiles
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.0
-Requires: libkmahjongg-lib
-Requires: libkmahjongg-license
-Requires: libkmahjongg-data
-Requires: libkmahjongg-locales
+Requires: libkmahjongg-data = %{version}-%{release}
+Requires: libkmahjongg-lib = %{version}-%{release}
+Requires: libkmahjongg-license = %{version}-%{release}
+Requires: libkmahjongg-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
 This directory contains the library used for loading and rendering of Mahjongg tilesets and associated backgrounds, used by KMahjongg and KShisen.
@@ -36,9 +36,9 @@ data components for the libkmahjongg package.
 %package dev
 Summary: dev components for the libkmahjongg package.
 Group: Development
-Requires: libkmahjongg-lib
-Requires: libkmahjongg-data
-Provides: libkmahjongg-devel
+Requires: libkmahjongg-lib = %{version}-%{release}
+Requires: libkmahjongg-data = %{version}-%{release}
+Provides: libkmahjongg-devel = %{version}-%{release}
 
 %description dev
 dev components for the libkmahjongg package.
@@ -47,8 +47,8 @@ dev components for the libkmahjongg package.
 %package lib
 Summary: lib components for the libkmahjongg package.
 Group: Libraries
-Requires: libkmahjongg-data
-Requires: libkmahjongg-license
+Requires: libkmahjongg-data = %{version}-%{release}
+Requires: libkmahjongg-license = %{version}-%{release}
 
 %description lib
 lib components for the libkmahjongg package.
@@ -71,27 +71,27 @@ locales components for the libkmahjongg package.
 
 
 %prep
-%setup -q -n libkmahjongg-18.08.0
+%setup -q -n libkmahjongg-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535236558
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549907219
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535236558
+export SOURCE_DATE_EPOCH=1549907219
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/libkmahjongg
-cp COPYING %{buildroot}/usr/share/doc/libkmahjongg/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/doc/libkmahjongg/COPYING.DOC
-cp COPYING.LIB %{buildroot}/usr/share/doc/libkmahjongg/COPYING.LIB
+mkdir -p %{buildroot}/usr/share/package-licenses/libkmahjongg
+cp COPYING %{buildroot}/usr/share/package-licenses/libkmahjongg/COPYING
+cp COPYING.DOC %{buildroot}/usr/share/package-licenses/libkmahjongg/COPYING.DOC
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/libkmahjongg/COPYING.LIB
 pushd clr-build
 %make_install
 popd
@@ -136,6 +136,7 @@ popd
 /usr/share/kmahjongglib/tilesets/traditional.copyright
 /usr/share/kmahjongglib/tilesets/traditional.desktop
 /usr/share/kmahjongglib/tilesets/traditional.svgz
+/usr/share/xdg/libkmahjongg.categories
 
 %files dev
 %defattr(-,root,root,-)
@@ -156,10 +157,10 @@ popd
 /usr/lib64/libKF5KMahjongglib.so.5.0.0
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/libkmahjongg/COPYING
-/usr/share/doc/libkmahjongg/COPYING.DOC
-/usr/share/doc/libkmahjongg/COPYING.LIB
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/libkmahjongg/COPYING
+/usr/share/package-licenses/libkmahjongg/COPYING.DOC
+/usr/share/package-licenses/libkmahjongg/COPYING.LIB
 
 %files locales -f libkmahjongg5.lang
 %defattr(-,root,root,-)
