@@ -6,11 +6,11 @@
 #
 Name     : libkmahjongg
 Version  : 18.12.3
-Release  : 3
+Release  : 4
 URL      : https://download.kde.org/stable/applications/18.12.3/src/libkmahjongg-18.12.3.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.12.3/src/libkmahjongg-18.12.3.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.12.3/src/libkmahjongg-18.12.3.tar.xz.sig
-Summary  : No detailed summary available
+Summary  : Common code, backgrounds and tile sets for games using Mahjongg tiles
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.0
 Requires: libkmahjongg-data = %{version}-%{release}
@@ -39,6 +39,7 @@ Group: Development
 Requires: libkmahjongg-lib = %{version}-%{release}
 Requires: libkmahjongg-data = %{version}-%{release}
 Provides: libkmahjongg-devel = %{version}-%{release}
+Requires: libkmahjongg = %{version}-%{release}
 
 %description dev
 dev components for the libkmahjongg package.
@@ -78,16 +79,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552011368
+export SOURCE_DATE_EPOCH=1555352078
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1552011368
+export SOURCE_DATE_EPOCH=1555352078
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkmahjongg
 cp COPYING %{buildroot}/usr/share/package-licenses/libkmahjongg/COPYING
