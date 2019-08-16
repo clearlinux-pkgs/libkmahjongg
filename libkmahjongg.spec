@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : libkmahjongg
-Version  : 19.04.3
-Release  : 9
-URL      : https://download.kde.org/stable/applications/19.04.3/src/libkmahjongg-19.04.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.3/src/libkmahjongg-19.04.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.3/src/libkmahjongg-19.04.3.tar.xz.sig
+Version  : 19.08.0
+Release  : 10
+URL      : https://download.kde.org/stable/applications/19.08.0/src/libkmahjongg-19.08.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.0/src/libkmahjongg-19.08.0.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.0/src/libkmahjongg-19.08.0.tar.xz.sig
 Summary  : Common code, backgrounds and tile sets for games using Mahjongg tiles
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -73,16 +73,17 @@ locales components for the libkmahjongg package.
 
 
 %prep
-%setup -q -n libkmahjongg-19.04.3
+%setup -q -n libkmahjongg-19.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562887458
+export SOURCE_DATE_EPOCH=1565913936
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -96,7 +97,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1562887458
+export SOURCE_DATE_EPOCH=1565913936
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkmahjongg
 cp COPYING %{buildroot}/usr/share/package-licenses/libkmahjongg/COPYING
@@ -146,7 +147,7 @@ popd
 /usr/share/kmahjongglib/tilesets/traditional.copyright
 /usr/share/kmahjongglib/tilesets/traditional.desktop
 /usr/share/kmahjongglib/tilesets/traditional.svgz
-/usr/share/xdg/libkmahjongg.categories
+/usr/share/qlogging-categories5/libkmahjongg.categories
 
 %files dev
 %defattr(-,root,root,-)
