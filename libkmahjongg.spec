@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : libkmahjongg
-Version  : 20.12.3
-Release  : 27
-URL      : https://download.kde.org/stable/release-service/20.12.3/src/libkmahjongg-20.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.12.3/src/libkmahjongg-20.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.12.3/src/libkmahjongg-20.12.3.tar.xz.sig
+Version  : 21.04.0
+Release  : 28
+URL      : https://download.kde.org/stable/release-service/21.04.0/src/libkmahjongg-21.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.04.0/src/libkmahjongg-21.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.04.0/src/libkmahjongg-21.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GFDL-1.2 GPL-2.0 LGPL-2.0
+License  : GPL-2.0
 Requires: libkmahjongg-data = %{version}-%{release}
 Requires: libkmahjongg-lib = %{version}-%{release}
 Requires: libkmahjongg-license = %{version}-%{release}
@@ -20,7 +20,6 @@ Requires: libkmahjongg-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
-BuildRequires : qtbase-dev mesa-dev
 
 %description
 This directory contains the library used for loading and rendering of Mahjongg tilesets and associated backgrounds, used by KMahjongg and KShisen.
@@ -73,15 +72,15 @@ locales components for the libkmahjongg package.
 
 
 %prep
-%setup -q -n libkmahjongg-20.12.3
-cd %{_builddir}/libkmahjongg-20.12.3
+%setup -q -n libkmahjongg-21.04.0
+cd %{_builddir}/libkmahjongg-21.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618682844
+export SOURCE_DATE_EPOCH=1619217935
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -97,12 +96,10 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618682844
+export SOURCE_DATE_EPOCH=1619217935
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkmahjongg
-cp %{_builddir}/libkmahjongg-20.12.3/COPYING %{buildroot}/usr/share/package-licenses/libkmahjongg/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/libkmahjongg-20.12.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/libkmahjongg/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-cp %{_builddir}/libkmahjongg-20.12.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/libkmahjongg/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+cp %{_builddir}/libkmahjongg-21.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/libkmahjongg/3e8971c6c5f16674958913a94a36b1ea7a00ac46
 pushd clr-build
 %make_install
 popd
@@ -151,13 +148,16 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
+/usr/include/KF5/KF5KMahjongg/KMahjonggBackground
+/usr/include/KF5/KF5KMahjongg/KMahjonggConfigDialog
+/usr/include/KF5/KF5KMahjongg/KMahjonggTileset
 /usr/include/KF5/KF5KMahjongg/kmahjonggbackground.h
 /usr/include/KF5/KF5KMahjongg/kmahjonggconfigdialog.h
 /usr/include/KF5/KF5KMahjongg/kmahjongglib_version.h
 /usr/include/KF5/KF5KMahjongg/kmahjonggtileset.h
 /usr/include/KF5/KF5KMahjongg/libkmahjongg_export.h
-/usr/lib64/cmake/KF5KMahjongglib/KF5KMahjonggLibraryDepends-relwithdebinfo.cmake
-/usr/lib64/cmake/KF5KMahjongglib/KF5KMahjonggLibraryDepends.cmake
+/usr/lib64/cmake/KF5KMahjongglib/KF5KMahjonggTargets-relwithdebinfo.cmake
+/usr/lib64/cmake/KF5KMahjongglib/KF5KMahjonggTargets.cmake
 /usr/lib64/cmake/KF5KMahjongglib/KF5KMahjongglibConfig.cmake
 /usr/lib64/cmake/KF5KMahjongglib/KF5KMahjongglibConfigVersion.cmake
 /usr/lib64/libKF5KMahjongglib.so
@@ -165,13 +165,11 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5KMahjongglib.so.5
-/usr/lib64/libKF5KMahjongglib.so.5.0.0
+/usr/lib64/libKF5KMahjongglib.so.5.1.0
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/libkmahjongg/4cc77b90af91e615a64ae04893fdffa7939db84c
-/usr/share/package-licenses/libkmahjongg/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-/usr/share/package-licenses/libkmahjongg/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+/usr/share/package-licenses/libkmahjongg/3e8971c6c5f16674958913a94a36b1ea7a00ac46
 
 %files locales -f libkmahjongg5.lang
 %defattr(-,root,root,-)
