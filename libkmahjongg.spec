@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : libkmahjongg
-Version  : 21.04.2
-Release  : 29
-URL      : https://download.kde.org/stable/release-service/21.04.2/src/libkmahjongg-21.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.04.2/src/libkmahjongg-21.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.04.2/src/libkmahjongg-21.04.2.tar.xz.sig
+Version  : 21.08.1
+Release  : 30
+URL      : https://download.kde.org/stable/release-service/21.08.1/src/libkmahjongg-21.08.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.08.1/src/libkmahjongg-21.08.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.08.1/src/libkmahjongg-21.08.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -72,34 +72,34 @@ locales components for the libkmahjongg package.
 
 
 %prep
-%setup -q -n libkmahjongg-21.04.2
-cd %{_builddir}/libkmahjongg-21.04.2
+%setup -q -n libkmahjongg-21.08.1
+cd %{_builddir}/libkmahjongg-21.08.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623391295
+export SOURCE_DATE_EPOCH=1630899070
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1623391295
+export SOURCE_DATE_EPOCH=1630899070
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkmahjongg
-cp %{_builddir}/libkmahjongg-21.04.2/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/libkmahjongg/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/libkmahjongg-21.08.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/libkmahjongg/3e8971c6c5f16674958913a94a36b1ea7a00ac46
 pushd clr-build
 %make_install
 popd
@@ -112,14 +112,14 @@ popd
 %defattr(-,root,root,-)
 /usr/share/kmahjongglib/backgrounds/chinese_landscape.copyright
 /usr/share/kmahjongglib/backgrounds/chinese_landscape.desktop
-/usr/share/kmahjongglib/backgrounds/chinese_landscape.svgz
+/usr/share/kmahjongglib/backgrounds/chinese_landscape.svg
 /usr/share/kmahjongglib/backgrounds/color_plain.desktop
 /usr/share/kmahjongglib/backgrounds/default.copyright
 /usr/share/kmahjongglib/backgrounds/default.desktop
 /usr/share/kmahjongglib/backgrounds/default.svg
 /usr/share/kmahjongglib/backgrounds/egyptian.copyright
 /usr/share/kmahjongglib/backgrounds/egyptian.desktop
-/usr/share/kmahjongglib/backgrounds/egyptian.svgz
+/usr/share/kmahjongglib/backgrounds/egyptian.svg
 /usr/share/kmahjongglib/backgrounds/summerfield.copyright
 /usr/share/kmahjongglib/backgrounds/summerfield.desktop
 /usr/share/kmahjongglib/backgrounds/summerfield.svg
@@ -128,34 +128,34 @@ popd
 /usr/share/kmahjongglib/backgrounds/wood_light.svg
 /usr/share/kmahjongglib/tilesets/alphabet.copyright
 /usr/share/kmahjongglib/tilesets/alphabet.desktop
-/usr/share/kmahjongglib/tilesets/alphabet.svgz
+/usr/share/kmahjongglib/tilesets/alphabet.svg
 /usr/share/kmahjongglib/tilesets/classic.copyright
 /usr/share/kmahjongglib/tilesets/classic.desktop
 /usr/share/kmahjongglib/tilesets/classic.svg
 /usr/share/kmahjongglib/tilesets/default.copyright
 /usr/share/kmahjongglib/tilesets/default.desktop
-/usr/share/kmahjongglib/tilesets/default.svgz
+/usr/share/kmahjongglib/tilesets/default.svg
 /usr/share/kmahjongglib/tilesets/egypt.copyright
 /usr/share/kmahjongglib/tilesets/egypt.desktop
-/usr/share/kmahjongglib/tilesets/egypt.svgz
+/usr/share/kmahjongglib/tilesets/egypt.svg
 /usr/share/kmahjongglib/tilesets/jade.copyright
 /usr/share/kmahjongglib/tilesets/jade.desktop
-/usr/share/kmahjongglib/tilesets/jade.svgz
+/usr/share/kmahjongglib/tilesets/jade.svg
 /usr/share/kmahjongglib/tilesets/traditional.copyright
 /usr/share/kmahjongglib/tilesets/traditional.desktop
-/usr/share/kmahjongglib/tilesets/traditional.svgz
+/usr/share/kmahjongglib/tilesets/traditional.svg
 /usr/share/qlogging-categories5/libkmahjongg.categories
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/KF5/KF5KMahjongg/KMahjonggBackground
-/usr/include/KF5/KF5KMahjongg/KMahjonggConfigDialog
-/usr/include/KF5/KF5KMahjongg/KMahjonggTileset
-/usr/include/KF5/KF5KMahjongg/kmahjonggbackground.h
-/usr/include/KF5/KF5KMahjongg/kmahjonggconfigdialog.h
-/usr/include/KF5/KF5KMahjongg/kmahjongglib_version.h
-/usr/include/KF5/KF5KMahjongg/kmahjonggtileset.h
-/usr/include/KF5/KF5KMahjongg/libkmahjongg_export.h
+/usr/include/KF5/KMahjongg/KMahjonggBackground
+/usr/include/KF5/KMahjongg/KMahjonggConfigDialog
+/usr/include/KF5/KMahjongg/KMahjonggTileset
+/usr/include/KF5/KMahjongg/kmahjonggbackground.h
+/usr/include/KF5/KMahjongg/kmahjonggconfigdialog.h
+/usr/include/KF5/KMahjongg/kmahjongglib_version.h
+/usr/include/KF5/KMahjongg/kmahjonggtileset.h
+/usr/include/KF5/KMahjongg/libkmahjongg_export.h
 /usr/lib64/cmake/KF5KMahjongglib/KF5KMahjonggTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/KF5KMahjongglib/KF5KMahjonggTargets.cmake
 /usr/lib64/cmake/KF5KMahjongglib/KF5KMahjongglibConfig.cmake
